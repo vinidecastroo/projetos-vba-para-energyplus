@@ -1,0 +1,314 @@
+Private Sub CommandButton1_Click()
+
+Application.ScreenUpdating = False
+
+Dim mod_num As Integer
+Dim questao As VbMsgBoxResult
+Dim Valor_final As String
+mod_num = 0
+Valor_final = "final"
+
+
+Worksheets("simula").Shapes("").Select
+  Selection.Value = (Range("e11"))
+
+
+
+Sheets("copia").Visible = True
+
+Sheets("copia").Select
+    ActiveSheet.Range("b1:b3460").Select
+        Selection.ClearContents
+
+
+Sheets("simula").Select
+    Sheets("modelos simulados").Visible = True
+    Sheets("criacao_do_modelo").Visible = True
+
+Sheets("simula").Select
+ActiveSheet.Range("g14").Select
+    mod_num = ActiveCell.Value
+    
+Sheets("modelos simulados").Select
+    ActiveSheet.Range("a1").Select
+
+
+Do While ActiveCell.Value <> ""
+
+    If ActiveCell.Value = mod_num Then
+        questao = MsgBox("você estava drogada e errou, ok tudo bem, mas se realmente quer rodar outra vez clique em SIM, se aceita seu erro clique NÂO", vbYesNo, "Você está drogada e ja rodou uma simulação com esses valores.")
+    
+        If questao = 7 Then
+             GoTo final
+    
+        Else:
+            ActiveCell.Value = mod_num
+                GoTo Salvando_modelo_utilizado
+    
+        End If
+   
+    Else
+        ActiveCell.Offset(1, 0).Select
+
+    End If
+
+Loop
+
+ActiveCell.Value = mod_num
+'aqui terminou a parte modelo simulado, ou seja, primeiro bloco
+
+Salvando_modelo_utilizado:
+
+'Sheets("modelo utilizado").Select
+    'ActiveSheet.Range("xfd1").Select
+        'Selection.End(xlToLeft).Select
+            'ActiveCell.Offset(0, 3).Select
+                'ActiveCell.Value = "modelo numero" & mod_num
+   
+'Sheets("criacao_do_modelo").Select
+    'ActiveSheet.Range("C1:c3460").Select
+        'Selection.Copy
+        
+'Sheets("modelo utilizado").Select
+   ' ActiveSheet.Range("xfd1").Select
+       ' Selection.End(xlToLeft).Select
+            'ActiveCell.Offset(2, 0).Select
+               ' Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+                '    :=False, Transpose:=False
+
+Sheets("criacao_do_modelo").Select
+    ActiveSheet.Range("C1:c3460").Select
+        Selection.Copy
+    
+
+Sheets("copia").Select
+    ActiveSheet.Range("b1").Select
+        Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+            :=False, Transpose:=False
+    
+Sheets("simula").Select
+    ActiveSheet.Range("a1").Select
+        ActiveCell.Value = Environ("username")
+
+
+Open Range("a21").Value For Output As 1
+   Sheets("copia").Select
+        ActiveSheet.Range("b1").Select
+      
+
+Do While ActiveCell.Value <> Valor_final
+
+    Print #1, ActiveCell.Value
+        ActiveCell.Offset(1, 0).Select
+        
+Loop
+
+Close 1
+
+ActiveSheet.Range("b1:b3460").Select
+    Selection.ClearContents
+
+final:
+
+
+Sheets("modelos simulados").Select
+    ActiveWindow.SelectedSheets.Visible = False
+Sheets("criacao_do_modelo").Select
+    ActiveWindow.SelectedSheets.Visible = False
+Sheets("copia").Select
+    ActiveWindow.SelectedSheets.Visible = False
+   
+ Sheets("simula").Select
+    ActiveSheet.Range("a1").Select
+        Selection.ClearContents
+
+            'Sheets("copia").Select
+            'ActiveSheet.Range("b1:b3460").Select
+            'Selection.Copy
+        
+        
+MsgBox " simulação realizada com sucesso, ou não caso você tenha feito alguma besteira ...AAAA TXT foi gerado  ", vbOKOnly, " simulação finalizada "
+
+
+Application.ScreenUpdating = True
+
+End Sub
+
+'Private Sub CommandButton2_Click()
+
+'Sheets("criacao_do_modelo").Select
+    'ActiveWindow.SelectedSheets.Visible = False
+'MsgBox ("se humilhe e pessa para o mais lindo de todos arrumar,a curiosidade matou o gato"), vbOKOnly, "não seja curiosa"
+'ActiveSheet.Protect DrawingObjects:=False, Contents:=True, Scenarios:= _
+        'False
+    'ActiveSheet.EnableSelection = xlNoRestrictions
+      
+      
+
+'End Sub
+Private Sub CommandButton2_Click()
+Application.ScreenUpdating = False
+Dim mod_num As Integer
+Dim questao As VbMsgBoxResult
+Dim Valor_final As String
+mod_num = 0
+Valor_final = "final"
+
+
+
+
+Sheets("copia").Visible = True
+
+
+Sheets("copia").Select
+    ActiveSheet.Range("b1:b3460").Select
+        Selection.ClearContents
+
+
+Sheets("simula").Select
+    Sheets("modelos simulados").Visible = True
+    Sheets("criacao_do_modelo").Visible = True
+
+Sheets("simula").Select
+ActiveSheet.Range("g14").Select
+    mod_num = ActiveCell.Value
+    
+Sheets("modelos simulados").Select
+    ActiveSheet.Range("a1").Select
+
+
+Do While ActiveCell.Value <> ""
+
+        ActiveCell.Offset(1, 0).Select
+
+Loop
+
+ActiveCell.Value = mod_num
+'aqui terminou a parte modelo simulado, ou seja, primeiro bloco
+
+Sheets("orientacao").Select
+    ActiveSheet.Range("a13").Select
+        ActiveCell.Value = 1
+Sheets("cor telha").Select
+    ActiveSheet.Range("a367").Select
+        ActiveCell.Value = 1
+Sheets("constructions").Select
+    ActiveSheet.Range("a1048573").Select
+        ActiveCell.Value = 1
+    ActiveSheet.Range("b1048573").Select
+        ActiveCell.Value = 1
+    ActiveSheet.Range("d1048573").Select
+        ActiveCell.Value = 1
+       
+        
+Sheets("orientacao").Select
+    ActiveSheet.Range("a13").Select
+
+Do While ActiveCell.Value < 5
+Sheets("cor telha").Select
+ActiveSheet.Range("a367").Select
+
+    Do While ActiveCell.Value < 3
+        Sheets("constructions").Select
+        ActiveSheet.Range("a1048573").Select
+        Do While ActiveCell.Value < 7
+            Sheets("constructions").Select
+            ActiveSheet.Range("b1048573").Select
+                Do While ActiveCell.Value < 4
+                Sheets("constructions").Select
+                ActiveSheet.Range("d1048573").Select
+                Do While ActiveCell.Value < 3
+                
+                        
+                        Sheets("criacao_do_modelo").Select
+                        ActiveSheet.Range("C1:c3460").Select
+                        Selection.Copy
+    
+
+                        Sheets("copia").Select
+                            ActiveSheet.Range("b1").Select
+                                Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+                                        :=False, Transpose:=False
+    
+                        Sheets("simula").Select
+                            ActiveSheet.Range("a1").Select
+                                ActiveCell.Value = Environ("username")
+
+    
+                        Open Range("a21").Value For Output As 1
+                            Sheets("copia").Select
+                                ActiveSheet.Range("b1").Select
+      
+
+                            Do While ActiveCell.Value <> Valor_final
+
+                            Print #1, ActiveCell.Value
+                                ActiveCell.Offset(1, 0).Select
+        
+                                Loop
+
+                                Close 1
+
+                                ActiveSheet.Range("b1:b3460").Select
+                                    Selection.ClearContents
+                
+                
+                
+                
+                
+                
+                
+                Sheets("constructions").Select
+                ActiveSheet.Range("d1048573").Select
+                ActiveCell.Value = ActiveCell.Value + 1
+                Loop
+                ActiveCell.Value = 1
+    
+                Sheets("constructions").Select
+                ActiveSheet.Range("b1048573").Select
+                ActiveCell.Value = ActiveCell.Value + 1
+                Loop
+                ActiveCell.Value = 1
+        Sheets("constructions").Select
+        ActiveSheet.Range("a1048573").Select
+        ActiveCell.Value = ActiveCell.Value + 1
+        Loop
+        ActiveCell.Value = 1
+    Sheets("cor telha").Select
+    ActiveSheet.Range("a367").Select
+    ActiveCell.Value = ActiveCell.Value + 1
+    Loop
+    ActiveCell.Value = 1
+Sheets("cor telha").Select
+ActiveSheet.Range("a367").Select
+ActiveCell.Value = ActiveCell.Value + 1
+Loop
+
+
+
+
+
+
+
+Sheets("modelos simulados").Select
+    ActiveWindow.SelectedSheets.Visible = False
+Sheets("criacao_do_modelo").Select
+    ActiveWindow.SelectedSheets.Visible = False
+Sheets("copia").Select
+    ActiveWindow.SelectedSheets.Visible = False
+   
+ Sheets("simula").Select
+    ActiveSheet.Range("a1").Select
+        Selection.ClearContents
+
+            'Sheets("copia").Select
+            'ActiveSheet.Range("b1:b3460").Select
+            'Selection.Copy
+        
+        
+MsgBox " simulação realizada com sucesso, ou não caso você tenha feito alguma besteira ...AAAA TXT foi gerado  ", vbOKOnly, " simulação finalizada "
+
+
+Application.ScreenUpdating = True
+
+End Sub

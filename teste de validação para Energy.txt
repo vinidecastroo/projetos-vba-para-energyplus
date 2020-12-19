@@ -1,0 +1,326 @@
+Sub LerResultadosSOMB_AC()
+'Listagem detalhada
+Close #1
+Close #2
+Dim arqAtual() As String
+Dim total As Integer
+
+'diretorio = ThisWorkbook.Path & "\modelos"
+diretorio = Range("b1")
+
+arquivo = Dir(diretorio & "\*.csv")
+total = 0
+If arquivo = "" Then
+  Call MsgBox("Não há nenhum arquivo *Table.csv no diretório selecionado.", vbCritical, "Erro: arquivos não encontrados.")
+  Exit Sub
+Else
+  'Contar quantos arquivos Table existem no diretório
+  Do While arquivo <> ""
+    total = total + 1
+    arquivo = Dir
+  Loop
+End If
+
+ReDim arqAtual(1 To total) As String
+
+Open diretorio & "\" & "resultados_usofinal_lista.csv" For Output As #2
+
+'Ler resultados por uso final
+arqAtual(1) = Dir(diretorio & "\*.csv")
+For i = 1 To total
+  Open diretorio & "\" & arqAtual(i) For Input As #1
+  nomeArq = arqAtual(i)
+  Line Input #1, texto
+  Line Input #1, texto
+  Print #2, texto
+  If i < total Then
+    arqAtual(i + 1) = Dir
+  End If
+  Close 1
+Next
+
+Close 2
+Call MsgBox("Dados coletados com sucesso!", vbInformation, "Macro Ler Resultados")
+Range("b2") = diretorio & "\" & "resultados_usofinal_lista.csv"
+With Worksheets(1)
+    .Hyperlinks.Add Anchor:=.Range("b2"), _
+        Address:=diretorio & "\" & "resultados_usofinal_lista.csv", _
+        ScreenTip:="Resultados", _
+        TextToDisplay:="Resultados Lista"
+End With
+
+End Sub
+Sub LerResultados()
+'Listagem detalhada
+
+Dim arqAtual() As String
+Dim total As Integer
+
+'diretorio = ThisWorkbook.Path & "\modelos"
+diretorio = Range("b1")
+
+arquivo = Dir(diretorio & "\*Table.csv")
+total = 0
+If arquivo = "" Then
+  Call MsgBox("Não há nenhum arquivo *Table.csv no diretório selecionado.", vbCritical, "Erro: arquivos não encontrados.")
+  Exit Sub
+Else
+  'Contar quantos arquivos Table existem no diretório
+  Do While arquivo <> ""
+    total = total + 1
+    arquivo = Dir
+  Loop
+End If
+
+ReDim arqAtual(1 To total) As String
+
+Open diretorio & "\" & "resultados_usofinal_lista.csv" For Output As #2
+
+'Ler resultados por uso final
+arqAtual(1) = Dir(diretorio & "\*Table.csv")
+For i = 1 To total
+  Open diretorio & "\" & arqAtual(i) For Input As #1
+  nomeArq = arqAtual(i)
+  Print #2, nomeArq
+  Do While Not EOF(1)
+    Line Input #1, texto
+    If InStr(1, texto, "End Uses By Subcategory", 1) > 0 Then
+      Do While InStr(1, texto, "Generators", 1) = 0
+        Line Input #1, texto
+        Print #2, texto
+      Loop
+      Print #2, ""
+    End If
+  Loop
+  Close #1
+  If i < total Then
+    arqAtual(i + 1) = Dir
+  End If
+Next
+
+'Ler tarifas
+arqAtual(1) = Dir(diretorio & "\*Table.csv")
+For i = 1 To total
+  Open diretorio & "\" & arqAtual(i) For Input As #1
+  nomeArq = arqAtual(i)
+  Print #2, nomeArq
+  Do While Not EOF(1)
+    Line Input #1, texto
+    If InStr(1, texto, "Tariff Summary", 1) > 0 Then
+      Do While InStr(1, texto, "-------", 1) = 0
+        Line Input #1, texto
+        Print #2, texto
+      Loop
+    End If
+  Loop
+  Close #1
+  Range("A2") = i
+Next
+
+Close #2
+Call MsgBox("Dados coletados com sucesso!", vbInformation, "Macro Ler Resultados")
+Range("b2") = diretorio & "\" & "resultados_usofinal_lista.csv"
+With Worksheets(1)
+    .Hyperlinks.Add Anchor:=.Range("b2"), _
+        Address:=diretorio & "\" & "resultados_usofinal_lista.csv", _
+        ScreenTip:="Resultados", _
+        TextToDisplay:="Resultados Lista"
+End With
+
+End Sub
+
+
+Sub LerResultados2()
+'Listagem resumida
+
+Dim arqAtual() As String
+Dim total As Integer
+
+'diretorio = ThisWorkbook.Path & "\modelos"
+diretorio = Range("b1")
+
+arquivo = Dir(diretorio & "\*Table.csv")
+total = 0
+If arquivo = "" Then
+  Call MsgBox("Não há nenhum arquivo *Table.csv no diretório selecionado.", vbCritical, "Erro: arquivos não encontrados.")
+  Exit Sub
+Else
+  'Contar quantos arquivos Table existem no diretório
+  Do While arquivo <> ""
+    total = total + 1
+    arquivo = Dir
+  Loop
+End If
+
+ReDim arqAtual(1 To total) As String
+
+Open diretorio & "\" & "resultados_usofinal.csv" For Output As #2
+
+Write #2, "Arquivo", "Heating", "Cooling", "InteriorLights", "ExteriorLights", _
+"InteriorEquipment", "ExteriorEquipment", "Fans", "Pumps", "HeatRejection", _
+"HeatRecovery", "TotalElectricity", "TotalGas", "HSV", "HSA", "Gas"
+
+'Ler resultados por uso final
+arqAtual(1) = Dir(diretorio & "\*Table.csv")
+For i = 1 To total
+  Open diretorio & "\" & arqAtual(i) For Input As #1
+  nomeArq = arqAtual(i)
+  'Print #2, nomeArq
+  Do While Not EOF(1)
+    Line Input #1, texto
+   If InStr(1, texto, "Annual Building Utility Performance Summary") > 0 Then
+      For j = 1 To 41
+        Line Input #1, lixo
+      Next
+      Input #1, lixo, lixo, Heating, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, Cooling, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, InteriorLights, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, ExteriorLights, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, InteriorEquipments, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, ExteriorEquipments, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, Fans, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, Pumps, lixo, lixo, lixo, lixo, lixo
+      Input #1, lixo, lixo, HeatRejection, lixo, lixo, lixo, lixo, lixo
+      Line Input #1, lixo
+      Input #1, lixo, lixo, HeatRecovery, lixo, lixo, lixo, lixo, lixo
+      Line Input #1, lixo
+      Line Input #1, lixo
+      Input #1, lixo, lixo, lixo, TotalGas, lixo, lixo, lixo, lixo
+      Line Input #1, lixo
+      Input #1, lixo, lixo, TotalElectricity, lixo, lixo, lixo, lixo, lixo
+      Write #2, nomeArq, Heating, Cooling, InteriorLights, ExteriorLights, _
+        InteriorEquipments, ExteriorEquipments, Fans, Pumps, HeatRejection, _
+        HeatRecovery, TotalElectricity, TotalGas
+    End If
+  Loop
+  
+'  Open diretorio & "\" & arqAtual(I) For Input As #1
+'  Do While Not EOF(1)
+'    Line Input #1, texto
+'    If InStr(1, texto, "Tariff Summary", 1) > 0 Then
+'      Line Input #1, lixo
+'      Line Input #1, lixo
+'      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, HSV
+'      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, HSA
+'      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, Gas
+'      Write #2, nomeArq, HSV, HSA, Gas
+'    End If
+'  Loop
+  Close #1
+  If i < total Then
+    arqAtual(i + 1) = Dir
+  End If
+  Range("A2") = i
+Next
+
+arqAtual(1) = Dir(diretorio & "\*Table.csv")
+i = 1
+Do While arqAtual(i) <> ""
+  Open diretorio & "\" & arqAtual(i) For Input As #1
+  nomeArq = arqAtual(i)
+  'Print #2, nomeArq
+  Do While Not EOF(1)
+    Line Input #1, texto
+    If InStr(1, texto, "Tariff Summary", 1) > 0 Then
+      Line Input #1, lixo
+      Line Input #1, lixo
+      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, HSV
+      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, HSA
+      Input #1, lixo, lixo, lixo, lixo, lixo, lixo, lixo, Gas
+      Write #2, nomeArq, HSV, HSA, Gas
+    End If
+  Loop
+  Close #1
+  If i < total Then
+    arqAtual(i + 1) = Dir
+  End If
+  Range("A2") = i
+Loop
+
+Close #2
+Call MsgBox("Dados coletados com sucesso!", vbInformation, "Macro Ler Resultados")
+Range("b2") = diretorio & "\" & "resultados_usofinal.csv"
+With Worksheets(1)
+    .Hyperlinks.Add Anchor:=.Range("b2"), _
+        Address:=diretorio & "\" & "resultados_usofinal.csv", _
+        ScreenTip:="Resultados", _
+        TextToDisplay:="Resultados"
+End With
+
+End Sub
+
+
+Sub LerResultados3_Monica()
+'Listagem resumida
+
+Dim arqAtual() As String
+Dim total As Integer
+Dim ConsumoZ1, ConsumoZ2, ConsumoZ3, ConsumoZ4 As Single
+
+'diretorio = ThisWorkbook.Path & "\modelos"
+diretorio = Range("b1")
+
+arquivo = Dir(diretorio & "\*.csv")
+If arquivo = "" Then
+  Call MsgBox("Não há nenhum arquivo *.csv no diretório selecionado.", vbCritical, "Erro: arquivos não encontrados.")
+  Exit Sub
+Else
+  'Contar quantos arquivos CSV existem no diretório e quantos são uteis
+  total = 0
+  Do While arquivo <> ""
+    If InStr(arquivo, "Table.csv") Or InStr(arquivo, "Zsz.csv") Or _
+        InStr(arquivo, "Monica.csv") Or InStr(arquivo, "lista.csv") Or _
+        InStr(arquivo, "Meter.csv") > 0 Then
+      total = total + 1
+      arquivo = Dir
+    Else
+      total = total + 1
+      arquivo = Dir
+    End If
+  Loop
+End If
+
+ReDim arqAtual(1 To total) As String
+
+Open diretorio & "\" & "resultados_consumo_Monica.csv" For Output As #2
+Write #2, "Arquivo", "Zona1", "Zona2", "Zona3", "Zona4" ' Escreve o cabeçalho das colunas no arquivo de saída
+
+'Ler resultados de consumo por zona
+arqAtual(1) = Dir(diretorio & "\*.csv")
+i = 1
+For i = 1 To total
+  If InStr(arqAtual(i), "Table.csv") > 0 Or InStr(arqAtual(i), "Zsz.csv") > 0 Or _
+        InStr(arqAtual(i), "Monica.csv") > 0 Or InStr(arqAtual(i), "lista.csv") > 0 Or _
+        InStr(arqAtual(i), "Meter.csv") > 0 Then
+  Else
+    Open diretorio & "\" & arqAtual(i) For Input As #1
+    nomeArq = arqAtual(i)
+    'Print #2, nomeArq
+    Do While Not EOF(1)
+      For j = 1 To 12
+        Line Input #1, lixo
+      Next
+      Input #1, lixo, lixo, lixo, lixo, lixo, ConsumoZ1, ConsumoZ2, ConsumoZ3, ConsumoZ4
+      Write #2, nomeArq, ConsumoZ1 / 3600000, ConsumoZ2 / 3600000, ConsumoZ3 / 3600000, ConsumoZ4 / 3600000
+    Loop
+    Close #1
+    Range("A2") = i
+  End If
+  If i < total Then
+    arqAtual(i + 1) = Dir
+  Else
+  End If
+Next
+
+Close #2
+Call MsgBox("Dados coletados com sucesso!", vbInformation, "Macro Ler Resultados")
+Range("b2") = diretorio & "\" & "resultados_consumo_Monica.csv"
+With Worksheets(1)
+    .Hyperlinks.Add Anchor:=.Range("b2"), _
+        Address:=diretorio & "\" & "resultados_consumo_Monica.csv", _
+        ScreenTip:="Resultados", _
+        TextToDisplay:="Resultados"
+End With
+
+End Sub
+

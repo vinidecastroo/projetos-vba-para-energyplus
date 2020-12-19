@@ -1,0 +1,229 @@
+Sub Macro1()
+'
+' Macro1 Macro
+
+Application.ScreenUpdating = False
+
+
+'limpeza das cedulas
+
+    Sheets("sala").Select
+    Range("A12:Cr1097").Select
+    Selection.ClearContents
+'
+'macros para a ocupacao
+
+   
+Sheets("1").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("2").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("3").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("4").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("5").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("6").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("7").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("8").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("9").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("10").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("11").Select
+     ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+Sheets("12").Select
+        ActiveSheet.Range("$A$1:$h$800").AutoFilter Field:=8, Criteria1:="20"
+
+'macros de conforto desabilitada
+
+'Sheets("1").Select
+    ' ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("2").Select
+        'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("3").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("4").Select
+        'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("5").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("6").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("7").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("8").Select
+       ' ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("9").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("10").Select
+        'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("11").Select
+     'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+'Sheets("12").Select
+        'ActiveSheet.Range("$A$1:$G$800").AutoFilter Field:=5, Criteria1:=">-1"
+        
+' copiando
+Sheets("1").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("A12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("2").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("i12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("3").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("q12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+
+Sheets("4").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("y12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("5").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Ag12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("6").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Ao12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+ 
+
+Sheets("7").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Aw12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("8").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Be12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("9").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Bm12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+
+
+        
+Sheets("10").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Bu12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("11").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("cc12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+     
+Sheets("12").Select
+Range("A2:g800").Select
+    Selection.Copy
+    Sheets("sala").Select
+    Range("Ck12").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+'limpeza dos filtros
+
+        
+    Sheets("1").Select
+        Selection.AutoFilter
+    Sheets("2").Select
+        Selection.AutoFilter
+    Sheets("3").Select
+        Selection.AutoFilter
+    Sheets("4").Select
+        Selection.AutoFilter
+    Sheets("5").Select
+        Selection.AutoFilter
+    Sheets("6").Select
+        Selection.AutoFilter
+    Sheets("7").Select
+        Selection.AutoFilter
+    Sheets("8").Select
+        Selection.AutoFilter
+    Sheets("9").Select
+        Selection.AutoFilter
+    Sheets("10").Select
+        Selection.AutoFilter
+    Sheets("11").Select
+        Selection.AutoFilter
+    Sheets("12").Select
+        Selection.AutoFilter
+        
+ Sheets("sala").Select
+    Range("Cs10:da22").Select
+    Selection.Copy
+    Sheets("Planilha1").Select
+    Range("A1048576").Select
+    Selection.End(xlUp).Select
+    ActiveCell.Offset(3, 0).Select
+    
+ Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("sala").Select
+    Range("Cs24:da36").Select
+    Selection.Copy
+    Sheets("Planilha1").Select
+    Range("L1048576").Select
+    Selection.End(xlUp).Select
+    ActiveCell.Offset(3, 0).Select
+    
+ Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+        
+Sheets("Planilha1").Select
+
+Application.ScreenUpdating = True
+
+MsgBox "finalizado....", vbOKOnly, " processo:"
+
+Range("A1").Select
+    
+    
+'
+End Sub

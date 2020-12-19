@@ -1,0 +1,179 @@
+Sub Macro1()
+'
+' Macro1 Macro
+'
+
+Application.ScreenUpdating = False
+
+'macro inicial
+
+
+Sheets("Consumo Zonas Térmicas").Select
+ Range("A25:G25").Select
+    Selection.AutoFilter
+    ActiveSheet.Range("$A$25:$G$187").AutoFilter Field:=4, Criteria1:="Resf."
+
+' finaliza macro inicial
+
+    Sheets("Consumo Zonas Térmicas").Select
+    Range("E26:F41").Select
+    Selection.Copy
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=-9
+    Range("D1").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    Range("E44:F59").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("D11").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=18
+    Range("E62:F77").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("D21").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=3
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=6
+    Range("E80:F95").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=6
+    Range("D31").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=15
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=15
+    Range("E98:F113").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("D41").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("E116:F131").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("D51").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=15
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("E134:F149").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=6
+    Range("D61").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("E152:F167").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("D71").Select
+    ActiveSheet.Paste
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=-114
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=-81
+    Range("N26:O41").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=-12
+    Range("L1").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    Range("N44:O59").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L11").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=12
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=15
+    Range("N62:O77").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L21").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("N80:O95").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L31").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=12
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("N98:O113").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L41").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=9
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("N116:O131").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    ActiveWindow.SmallScroll Down:=3
+    Range("L51").Select
+    ActiveSheet.Paste
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=15
+    Range("N134:O149").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L61").Select
+    ActiveSheet.Paste
+    ActiveWindow.SmallScroll Down:=9
+    Sheets("Consumo Zonas Térmicas").Select
+    ActiveWindow.SmallScroll Down:=12
+    Range("N152:O167").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Sheets("gráficos").Select
+    Range("L71").Select
+    ActiveSheet.Paste
+    
+    ' macro 2 fim
+    
+    Sheets("Consumo Zonas Térmicas").Select
+    
+  
+     
+    
+        Selection.AutoFilter
+    
+    MsgBox "processo finalizado ...", vbOKOnly, " finalizado"
+    
+    
+   
+    
+   Application.ScreenUpdating = True
+   
+   
+    Range("A1:C9").Select
+    
+    
+    
+End Sub
+
