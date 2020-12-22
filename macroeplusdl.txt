@@ -1,0 +1,42 @@
+Sub organizar()
+
+texto = "a"
+linha = 1
+
+Do While texto <> ""
+    If InStr(1, texto, "06:00", vbTextCompare) > 0 Then
+        For i = 1 To 11
+            Cells(linha, 1).Select
+            Rows(ActiveCell.Row).EntireRow.Delete
+        Next
+        texto = Cells(linha, 1)
+    End If
+    If InStr(1, texto, "07:00", vbTextCompare) > 0 Then
+        For i = 1 To 11
+            Cells(linha, 1).Select
+            Rows(ActiveCell.Row).EntireRow.Delete
+        Next
+        texto = Cells(linha, 1)
+    End If
+    If InStr(1, texto, "19:00", vbTextCompare) > 0 Then
+        For i = 1 To 11
+            Cells(linha, 1).Select
+            Rows(ActiveCell.Row).EntireRow.Delete
+        Next
+        texto = Cells(linha, 1)
+    End If
+    If InStr(1, texto, "20:00", vbTextCompare) > 0 Then
+        For i = 1 To 11
+            Cells(linha, 1).Select
+            Rows(ActiveCell.Row).EntireRow.Delete
+        Next
+        texto = Cells(linha, 1)
+    End If
+    
+    linha = linha + 1
+    texto = Cells(linha, 1)
+
+Loop
+
+
+End Sub
